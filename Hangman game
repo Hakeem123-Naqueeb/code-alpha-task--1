@@ -49,3 +49,43 @@ def play_hangman():
 
 if __name__ == "__main__":
     play_hangman()
+
+Explanation:
+Here is the break down of the code
+Import random: This line imports the random module, which is used to select a random word from a predefined list.
+
+play_hangman() function: This is the main function that encapsulates all the game logic.
+
+Word Selection: Inside play_hangman(), a word_list containing five words is defined. random.choice(word_list).lower() then picks one of these words at random and converts it to lowercase, storing it as secret_word.
+
+Game State Initialization:
+
+guessed_letters = set(): An empty set is created to store all the letters the player has guessed so far. Using a set is efficient for checking if a letter has already been guessed.
+attempts_left = 6: The player starts with 6 attempts.
+Welcome and Initial Display: The game prints a welcome message and then displays the secret_word as a series of underscores, indicating how many letters are in the word.
+
+Main Game Loop (while attempts_left > 0): The game continues as long as the player has attempts left.
+
+Player Input and Validation:
+
+The input() function prompts the player to guess a letter.
+Length and Alphabetical Check: if len(guess) != 1 or not guess.isalpha(): ensures the input is a single alphabetical character. If not, an error message is printed, and the loop continues to the next iteration, asking for input again.
+Already Guessed Check: if guess in guessed_letters: checks if the letter has already been guessed. If so, a message is displayed, and the loop continues.
+guessed_letters.add(guess): If the guess is valid and new, it's added to the guessed_letters set.
+Checking the Guess:
+
+if guess in secret_word:: If the guessed letter is in the secret_word, "Good guess!" is printed.
+else: If the guess is incorrect, attempts_left is decremented by 1, and the player is informed how many attempts they have left.
+Displaying Current Word State:
+
+display_word = "".join([letter if letter in guessed_letters else "_" for letter in secret_word]): This line creates a string that shows the secret_word with correctly guessed letters revealed and unguessed letters replaced by underscores.
+The display_word is then printed.
+Win Condition: if "_" not in display_word: checks if there are any underscores left in the display_word. If not, it means all letters have been guessed, the player wins, and the break statement exits the loop.
+
+Loss Condition: After the loop finishes, if attempts_left == 0: checks if the player ran out of attempts. If so, "Game over!" is printed, revealing the secret_word.
+
+if __name__ == "__main__":: This is a standard Python construct. It ensures that the play_hangman() function is called and the game starts only when the script is executed directly (not when it's imported as a module into another script).
+
+What can I help you build?
+
+
